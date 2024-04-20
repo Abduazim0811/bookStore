@@ -18,7 +18,10 @@ func Scan(user *us.Users) {
 var Lampochka bool
 
 func SignIn(db *sql.DB) {
-	var user us.Users
+	var (
+		user  us.Users
+		price float64
+	)
 	Scan(&user)
 
 	query := "SELECT email,password FROM users;"
@@ -36,8 +39,12 @@ func SignIn(db *sql.DB) {
 		}
 		if strings.TrimSpace(user.Email) == strings.TrimSpace(email) && strings.TrimSpace(user.Password) == strings.TrimSpace(password) {
 			Lampochka = true
-			return
+			fmt.Println("Pul kiriting: ?$")
+			fmt.Scanln(&price)
+			_,err:=db.Query("UPDATE users SET price=price+$1 WHERE email=$2", price,user.Email)
+			if err!=nil{
+				log.Fatal(err)
+			}
 		}
 	}
-
 }

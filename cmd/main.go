@@ -35,12 +35,14 @@ func main() {
 				st.Store(db)
 			}
 		} else if num2 == 2 {
-			signup.SignUp(db)
+			if signup.Lampochka{
+				signup.SignUp(db)
+			}
 		} else {
 			fmt.Println("Notugri raqam kiritdiz!!!")
 		}
 	case 2:
-		// fmt.Println("Admin panel tez orada ishlaydi")
+		
 		admin.Admin(db)
 	case 3:
 		os.Exit(0)
