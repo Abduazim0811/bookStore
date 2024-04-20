@@ -27,7 +27,9 @@ func Store(db *sql.DB) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("%d. %s - %s, qoldiq: %d, narxi: %.2f\n", id, name, author, count, price)
+		if count!=0{
+			fmt.Printf("%d. %s - %s, qoldiq: %d, narxi: %.2f\n", id, name, author, count, price)
+		}
 	}
 
 	fmt.Print("Tanlangan kitob raqamini kiriting: ")
@@ -59,12 +61,12 @@ func Store(db *sql.DB) {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Tanlangan kitob: %s - %s, qoldiq: %d, narxi: %.2f\n", name, author, count, price)
+	fmt.Printf("Tanlangan kitob: %s - %s, narxi: %.2f\n", name, author, price)
 
 	_, err = db.Exec("UPDATE book SET count = count - 1 WHERE name = $1 AND count > 0", name)
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 }
 

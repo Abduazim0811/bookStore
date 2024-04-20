@@ -4,6 +4,7 @@ import (
 	signin "BookStore/internal/Signin"
 	signup "BookStore/internal/Signup"
 	st "BookStore/internal/Store"
+	admin "BookStore/internal/Admin"
 	"database/sql"
 	"fmt"
 	"log"
@@ -39,8 +40,8 @@ func main() {
 			fmt.Println("Notugri raqam kiritdiz!!!")
 		}
 	case 2:
-		fmt.Println("Admin panel tez orada ishlaydi")
-		// admin.Admin()
+		// fmt.Println("Admin panel tez orada ishlaydi")
+		admin.Admin(db)
 	case 3:
 		os.Exit(0)
 	}

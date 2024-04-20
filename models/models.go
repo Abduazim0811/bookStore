@@ -6,3 +6,10 @@ type Users struct{
 	Email string
 	Password string
 }
+
+type Book struct{
+	Name string
+	Author string
+	Count int 
+	Price float64
+}

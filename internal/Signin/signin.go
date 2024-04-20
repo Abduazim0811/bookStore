@@ -21,7 +21,7 @@ func SignIn(db *sql.DB) {
 	var user us.Users
 	Scan(&user)
 
-	query := "SELECT (email,password) FROM users;"
+	query := "SELECT email,password FROM users;"
 
 	rows, err := db.Query(query)
 	if err != nil {
