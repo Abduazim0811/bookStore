@@ -1,7 +1,6 @@
 package main
 
 import (
-	admin "BookStore/internal/Admin"
 	signin "BookStore/internal/Signin"
 	signup "BookStore/internal/Signup"
 	st "BookStore/internal/Store"
@@ -9,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 		fmt.Scanln(&num2)
 		if num2 == 1 {
 			signin.SignIn(db)
-			if signin.Lampochka{
+			if signin.Lampochka {
 				st.Store(db)
 			}
 		} else if num2 == 2 {
@@ -39,7 +39,8 @@ func main() {
 			fmt.Println("Notugri raqam kiritdiz!!!")
 		}
 	case 2:
-		admin.Admin()
+		fmt.Println("Admin panel tez orada ishlaydi")
+		// admin.Admin()
 	case 3:
 		os.Exit(0)
 	}
