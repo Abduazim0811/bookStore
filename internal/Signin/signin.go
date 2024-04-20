@@ -8,32 +8,34 @@ import (
 	"strings"
 )
 
-func Scan(user *us.Users){
+func Scan(user *us.Users) {
 	fmt.Printf("Emal: ")
 	fmt.Scanln(&user.Email)
 	fmt.Printf("Password: ")
 	fmt.Scanln(&user.Password)
 }
 
-func SignIn(db *sql.DB){
+var Lampochka bool
+
+func SignIn(db *sql.DB) {
 	var user us.Users
 	Scan(&user)
 
-	query:="SELECT (email,password) FROM users;"
+	query := "SELECT (email,password) FROM users;"
 
-	rows,err:=db.Query(query)
-	if err!=nil{
+	rows, err := db.Query(query)
+	if err != nil {
 		log.Fatal(err)
 	}
 	defer rows.Close()
 
-	for rows.Next(){
-		var email,password string
-		if err:=rows.Scan(&email,&password); err!=nil{
+	for rows.Next() {
+		var email, password string
+		if err := rows.Scan(&email, &password); err != nil {
 			log.Fatal(err)
 		}
-		if strings.TrimSpace(user.Email)!=strings.TrimSpace(email) && strings.TrimSpace(user.Password)!=strings.TrimSpace(password){
-			fmt.Println("Bunday email mavjud emas!!")
+		if strings.TrimSpace(user.Email) == strings.TrimSpace(email) && strings.TrimSpace(user.Password) == strings.TrimSpace(password) {
+			Lampochka = true
 			return
 		}
 	}

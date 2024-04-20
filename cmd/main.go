@@ -4,6 +4,7 @@ import (
 	admin "BookStore/internal/Admin"
 	signin "BookStore/internal/Signin"
 	signup "BookStore/internal/Signup"
+	st "BookStore/internal/Store"
 	"database/sql"
 	"fmt"
 	"log"
@@ -29,6 +30,9 @@ func main() {
 		fmt.Scanln(&num2)
 		if num2 == 1 {
 			signin.SignIn(db)
+			if signin.Lampochka{
+				st.Store(db)
+			}
 		} else if num2 == 2 {
 			signup.SignUp(db)
 		} else {
