@@ -1,14 +1,15 @@
 package main
 
 import (
+	admin "BookStore/internal/Admin"
 	signin "BookStore/internal/Signin"
 	signup "BookStore/internal/Signup"
 	st "BookStore/internal/Store"
-	admin "BookStore/internal/Admin"
 	"database/sql"
 	"fmt"
 	"log"
 	"os"
+
 	_ "github.com/lib/pq"
 )
 
@@ -32,17 +33,18 @@ func main() {
 		if num2 == 1 {
 			signin.SignIn(db)
 			if signin.Lampochka {
-				st.Store(db)
+				st.Store(db,signin.Emaill)
 			}
 		} else if num2 == 2 {
-			if signup.Lampochka{
-				signup.SignUp(db)
+			signup.SignUp(db)
+			if signup.Lampochka {
+				st.Store(db,signup.Emmail)
 			}
 		} else {
 			fmt.Println("Notugri raqam kiritdiz!!!")
 		}
 	case 2:
-		
+
 		admin.Admin(db)
 	case 3:
 		os.Exit(0)

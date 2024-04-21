@@ -5,6 +5,7 @@ type Users struct{
 	Last_Name string
 	Email string
 	Password string
+	Pricee float32
 }
 
 type Book struct{
